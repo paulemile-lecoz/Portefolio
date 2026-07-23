@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio de Paul-Emile Le Coz — Ingénieur conception mécanique">
+<title>Paul-Emile Le Coz — Ingénieur d'étude et d'affaires</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#071726;
+  --bg-deep:#04101c;
+  --card:#0d2038;
+  --card-light:#12293f;
+  --white:#EDF3F8;
+  --white-dim:#A7BBCC;
+  --gray:#5C7A90;
+  --accent:#4FA3D1;
+  --accent-soft:rgba(79,163,209,.12);
+  --accent-dim:#2C7CA6;
+  --line:rgba(79,163,209,.16);
+  --line-soft:rgba(79,163,209,.08);
+  --font:'Inter',-apple-system,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--white);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{display:block;max-width:100%}
+button{font-family:inherit}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0%;z-index:1000;transition:width .08s linear}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 3.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(7,23,38,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line-soft)}
+.nav-logo{font-family:var(--font);font-size:.98rem;font-weight:600;letter-spacing:.01em;color:var(--white)}
+.nav-logo em{font-style:normal;color:var(--accent)}
+.nav-links{display:flex;gap:1.9rem}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--gray);transition:color .25s var(--ease);cursor:pointer}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--accent)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:.25s var(--ease)}
+.mob{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(7,23,38,.98);backdrop-filter:blur(20px);padding:1.5rem 2rem;border-bottom:1px solid var(--line-soft);z-index:99;flex-direction:column;gap:1rem}
+.mob.open{display:flex}
+.mob a{font-size:.85rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--gray);padding:.5rem 0;cursor:pointer}
+
+@media(max-width:1100px){
+  nav{padding:0 2rem}
+  .nav-links{gap:1.3rem}
+  .nav-links a{font-size:.66rem}
+}
+
+/* HERO */
+#accueil{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;overflow:hidden;background:var(--bg)}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg svg{position:absolute;inset:0;width:100%;height:100%}
+.wave{fill:none;stroke:var(--accent)}
+.wave-1{stroke-width:.6;opacity:.20;animation:driftA 64s ease-in-out infinite}
+.wave-2{stroke-width:.6;opacity:.15;animation:driftB 78s ease-in-out infinite}
+.wave-3{stroke-width:.5;opacity:.12;animation:driftA 92s ease-in-out infinite}
+.wave-4{stroke-width:.5;opacity:.09;animation:driftB 70s ease-in-out infinite}
+.wave-5{stroke-width:.4;opacity:.07;animation:driftA 105s ease-in-out infinite}
+.wave-6{stroke-width:.4;opacity:.05;animation:driftB 88s ease-in-out infinite}
+.math-dot{fill:var(--accent);opacity:.5}
+.math-dot-1{animation:orbitA 46s linear infinite}
+.math-dot-2{animation:orbitB 58s linear infinite}
+@keyframes driftA{0%,100%{transform:translateX(0)}50%{transform:translateX(16px)}}
+@keyframes driftB{0%,100%{transform:translateX(0)}50%{transform:translateX(-18px)}}
+@keyframes orbitA{0%{transform:translate(0,0)}25%{transform:translate(14px,-8px)}50%{transform:translate(0,-16px)}75%{transform:translate(-14px,-8px)}100%{transform:translate(0,0)}}
+@keyframes orbitB{0%{transform:translate(0,0)}25%{transform:translate(-12px,10px)}50%{transform:translate(0,20px)}75%{transform:translate(12px,10px)}100%{transform:translate(0,0)}}
+
+.hero-content{position:relative;z-index:1;max-width:780px}
+.hero-name{font-size:clamp(2.6rem,6.5vw,4.6rem);font-weight:700;line-height:1.06;letter-spacing:-.02em;color:var(--white);margin-bottom:.5rem}
+.hero-name .hl{color:var(--accent)}
+.hero-sub{font-size:clamp(.95rem,2.2vw,1.15rem);font-weight:400;color:var(--white-dim);margin-bottom:1.5rem;letter-spacing:.01em}
+.hero-tag{font-size:clamp(.85rem,1.8vw,.98rem);color:var(--gray);line-height:1.8;max-width:480px;margin:0 auto 2.6rem}
+.hero-cta{display:flex;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2.1rem;border-radius:100px;font-size:.8rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:.3s var(--ease);background:var(--accent);color:var(--bg-deep);border:1px solid var(--accent)}
+.btn:hover{background:#63b3dc;border-color:#63b3dc;transform:translateY(-1px)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--gray);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;animation:hscroll 2.4s ease-in-out infinite}
+.scroll-line{width:1px;height:30px;background:linear-gradient(to bottom,var(--accent),transparent)}
+@keyframes hscroll{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* SECTIONS */
+.section-wrap{padding:7.5rem 3rem}
+.inner{max-width:1320px;margin:0 auto}
+.s-label{font-family:var(--font-mono);font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;display:flex;align-items:center;gap:.6rem}
+.s-label::after{content:'';width:28px;height:1px;background:var(--accent);opacity:.5}
+.s-title{font-size:clamp(1.6rem,3.3vw,2.3rem);font-weight:700;line-height:1.15;color:var(--white);margin-bottom:.9rem}
+.s-sub{font-size:.92rem;color:var(--gray);line-height:1.8;max-width:520px}
+
+.fi{opacity:0;transform:translateY(20px);transition:opacity .65s var(--ease-out),transform .65s var(--ease-out)}
+.fi.on{opacity:1;transform:translateY(0)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:300px 1fr;gap:5rem;margin-top:3.5rem;align-items:start}
+.about-photo{width:100%;aspect-ratio:3/4;border-radius:16px;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.9rem;color:var(--gray);font-size:.72rem;text-align:center;padding:1rem;position:relative}
+.about-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.about-photo svg{width:44px;height:44px;color:var(--gray);opacity:.5}
+.about-body p{font-size:.94rem;color:var(--white-dim);line-height:1.85;margin-bottom:1.5rem}
+.about-body p strong{color:var(--white);font-weight:600}
+.tags-label{font-family:var(--font-mono);font-size:.66rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+.tag{font-family:var(--font-mono);font-size:.7rem;color:var(--white-dim);background:var(--card);border:1px solid var(--line);padding:.32rem .75rem;border-radius:100px}
+.profile-links{display:flex;flex-wrap:wrap;gap:1.7rem}
+.profile-link-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:500;font-family:var(--font);color:var(--accent);background:none;border:none;border-bottom:1px solid rgba(79,163,209,.35);padding:0 0 .18rem;cursor:pointer;transition:opacity .2s var(--ease)}
+.profile-link-btn:hover{opacity:.65}
+
+/* PROJECTS */
+.proj-list{margin-top:4.5rem;display:flex;flex-direction:column}
+.proj-row{display:grid;grid-template-columns:420px 1fr;gap:4rem;border-top:1px solid var(--line);padding:4.2rem 0;align-items:stretch}
+.proj-row:last-child{border-bottom:1px solid var(--line)}
+.proj-row.flip{grid-template-columns:1fr 420px}
+.proj-row.flip .proj-photos{order:2}
+.proj-row.flip .proj-text{order:1}
+.proj-photos{display:flex;flex-direction:column;gap:1.2rem;height:100%}
+.proj-img{aspect-ratio:4/3;width:100%;flex-shrink:0;border-radius:14px;background:radial-gradient(circle at 28% 22%,var(--card-light),var(--card));border:1px solid var(--line);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+.proj-img svg{width:40px;height:40px;color:var(--accent)}
+.proj-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.proj-img.img-contain{background:var(--bg)}
+.proj-img.img-contain img{object-fit:contain}
+.proj-img-link{display:block;transition:opacity .25s var(--ease)}
+.proj-img-link:hover{opacity:.82}
+.proj-extra{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease-out)}
+.proj-extra.open{grid-template-rows:1fr}
+.proj-extra-inner{overflow:hidden;display:flex;flex-direction:column;gap:1.2rem;min-height:0}
+.proj-extra-img{flex:1;min-height:140px;border-radius:14px;background:var(--card-light);border:1px dashed var(--line);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--gray);text-align:center;padding:.8rem}
+/* Images 2 et 3 du monorail — même taille que l'image principale */
+.proj-extra-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.proj-extra-inner .proj-extra-img {
+  aspect-ratio: 4/3;
+  flex: unset;
+  min-height: unset;
+}
+.proj-extra-img svg{width:22px;height:22px;opacity:.5}
+.proj-extra-img span{font-family:var(--font-mono);font-size:.66rem;opacity:.65;letter-spacing:.02em;line-height:1.4}
+.proj-extra-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.proj-sector{font-family:var(--font-mono);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.55rem}
+.proj-title{font-size:clamp(1.1rem,2.1vw,1.4rem);font-weight:700;color:var(--white);line-height:1.3;margin-bottom:.9rem}
+.proj-title-link:hover .proj-title{color:var(--accent)}
+.proj-desc{font-size:.88rem;color:var(--white-dim);line-height:1.85;margin-bottom:1.2rem}
+.proj-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.3rem}
+.proj-tool{font-family:var(--font-mono);font-size:.68rem;font-weight:500;color:var(--white-dim);background:var(--card);border:1px solid var(--line);padding:.2rem .65rem;border-radius:100px}
+.proj-actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.proj-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;color:var(--accent);border-bottom:1px solid rgba(79,163,209,.3);padding-bottom:.15rem;transition:opacity .2s}
+.proj-link:hover{opacity:.7}
+
+.detail-toggle{display:inline-flex;align-items:center;gap:.45rem;font-size:.8rem;font-weight:500;color:var(--white-dim);background:none;border:none;cursor:pointer;padding:0;transition:color .2s var(--ease)}
+.detail-toggle:hover{color:var(--white)}
+.detail-toggle .chevron{display:inline-block;width:8px;height:8px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg);transition:transform .35s var(--ease-out)}
+.detail-toggle.open .chevron{transform:rotate(225deg)}
+.proj-detail-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease-out)}
+.proj-detail-wrap.open{grid-template-rows:1fr}
+.proj-detail-inner{overflow:hidden}
+.proj-detail{font-size:.86rem;color:var(--white-dim);line-height:1.9;padding-top:1.5rem;margin-top:.3rem;border-top:1px solid var(--line);opacity:0;transform:translateY(-8px);transition:opacity .4s var(--ease-out) .05s,transform .4s var(--ease-out) .05s}
+.proj-detail-wrap.open .proj-detail{opacity:1;transform:translateY(0)}
+.proj-detail p{margin-bottom:1rem}
+.proj-detail ul{margin:0 0 1rem 0;display:flex;flex-direction:column;gap:.5rem}
+.proj-detail li{position:relative;padding-left:1.1rem}
+.proj-detail li::before{content:'';position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--accent)}
+
+/* ── GALERIE MULTI-IMAGES (projet monorail) ── */
+
+/* Image principale seule (toujours visible) */
+.proj-photos.multi-img .proj-img-main {
+  aspect-ratio: 4/3;
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: radial-gradient(circle at 28% 22%, var(--card-light), var(--card));
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.proj-photos.multi-img .proj-img-main img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Galerie des 3 images (visible uniquement en mode "Détails") */
+.proj-gallery-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .5s var(--ease-out);
+}
+.proj-gallery-wrap.open {
+  grid-template-rows: 1fr;
+}
+.proj-gallery-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.proj-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  padding-top: 1.2rem;
+}
+.proj-gallery .proj-img-thumb {
+  aspect-ratio: 4/3;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+  background: var(--card);
+}
+.proj-gallery .proj-img-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media(max-width:768px){
+  .proj-photos.multi-img .proj-img-main { aspect-ratio: 16/9; }
+  .proj-gallery .proj-img-thumb { aspect-ratio: 16/9; }
+}
+
+/* CONTACT */
+.contact-strip{padding:2.8rem 3rem;border-top:1px solid var(--line)}
+.contact-inner{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+.ct-eyebrow{font-family:var(--font);font-size:1.35rem;font-weight:700;letter-spacing:-.01em;text-transform:none;color:var(--white)}
+.ct-items{display:flex;flex-wrap:wrap;align-items:center;gap:.85rem;font-size:.84rem;color:var(--white-dim)}
+.ct-items a{transition:color .2s}
+.ct-items a:hover{color:var(--accent)}
+.ct-sep{color:var(--gray);opacity:.4}
+
+footer{padding:1.8rem 2rem;text-align:center;border-top:1px solid var(--line-soft);font-size:.72rem;color:var(--gray)}
+
+#btt{position:fixed;bottom:2rem;right:2rem;width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--accent);font-size:.95rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:99;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s,border-color .25s}
+#btt.on{opacity:1;pointer-events:all}
+#btt:hover{border-color:var(--accent);transform:translateY(-3px)}
+
+/* MODALES */
+.modal-overlay{position:fixed;inset:0;z-index:200;display:flex;justify-content:center;align-items:flex-start;background:rgba(4,10,18,.75);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .35s var(--ease-out);padding:9vh 1.5rem 5vh;overflow-y:auto}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-panel{background:var(--bg);border:1px solid var(--line);border-radius:20px;max-width:860px;width:100%;padding:3.4rem 3.2rem;position:relative;transform:translateY(18px) scale(.97);opacity:0;transition:transform .45s var(--ease-out),opacity .45s var(--ease-out);box-shadow:0 40px 90px rgba(0,0,0,.5)}
+.modal-overlay.open .modal-panel{transform:translateY(0) scale(1);opacity:1}
+.modal-close{position:absolute;top:1.4rem;right:1.4rem;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--white-dim);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s var(--ease)}
+.modal-close:hover{color:var(--white);border-color:var(--accent-dim);transform:rotate(90deg)}
+.modal-close svg{width:14px;height:14px}
+
+.comp-groups{margin-top:2.4rem;display:flex;flex-direction:column;gap:2.1rem}
+.comp-group h3{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:1rem}
+.comp-group .tags{margin-bottom:0}
+
+.perso-grid{margin-top:2.6rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem}
+.perso-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2rem;transition:transform .3s var(--ease),border-color .3s var(--ease)}
+.perso-card:hover{transform:translateY(-3px);border-color:var(--accent-dim)}
+.perso-icon{width:28px;height:28px;color:var(--accent);margin-bottom:1.1rem}
+.perso-icon svg{width:100%;height:100%}
+.perso-card h3{font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:.7rem}
+.perso-card p{font-size:.88rem;color:var(--white-dim);line-height:1.85}
+.perso-photos{margin-top:1.6rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.perso-photo{aspect-ratio:4/3;border-radius:12px;background:var(--card-light);border:1px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--gray);text-align:center;padding:.8rem;position:relative;overflow:hidden}
+.perso-photo svg{width:22px;height:22px;opacity:.5}
+.perso-photo span{font-family:var(--font-mono);font-size:.66rem;opacity:.65;letter-spacing:.02em}
+.perso-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  nav{padding:0 1.4rem}
+  .about-grid{grid-template-columns:1fr}
+  .about-photo{max-width:220px;margin:0 auto 2rem}
+  .proj-row,.proj-row.flip{grid-template-columns:1fr;gap:1.6rem}
+  .proj-row.flip .proj-photos,.proj-row .proj-photos{order:1}
+  .proj-row.flip .proj-text,.proj-row .proj-text{order:2}
+  .proj-extra-img{min-height:120px}
+  .proj-photos.multi-img .proj-img{min-height:180px;flex:unset;aspect-ratio:16/9}
+  .section-wrap{padding:4.5rem 1.3rem}
+  .contact-inner{flex-direction:column;align-items:flex-start}
+  .modal-panel{padding:2.4rem 1.6rem}
+  .perso-grid{grid-template-columns:1fr}
+  .perso-photos{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<nav id="nav">
+  <div class="nav-logo">Paul-Emile Le Coz</div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#apropos">Profil</a></li>
+    <li><a onclick="openModal('modal-competences')">Compétences</a></li>
+    <li><a onclick="openModal('modal-perso')">À propos de moi</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob" id="mob">
+  <a href="#accueil" onclick="cm()">Accueil</a>
+  <a href="#apropos" onclick="cm()">Profil</a>
+  <a onclick="openModal('modal-competences');cm()">Compétences</a>
+  <a onclick="openModal('modal-perso');cm()">À propos de moi</a>
+  <a href="#projets" onclick="cm()">Projets</a>
+  <a href="#contact" onclick="cm()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="accueil">
+ <div class="hero-bg" aria-hidden="true">
+  <canvas id="hero-canvas"></canvas>
+</div>
+
+<style>
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%}
+</style>
+
+<script>
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const ctx    = canvas.getContext('2d');
+  const ACCENT = '#4FA3D1';
+
+  function resize(){ canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let t = 0;
+
+  /* ══════════════════════════════════════════
+     1. GRILLE FINE — repère inertiel
+  ══════════════════════════════════════════ */
+  function drawGrid(){
+    const W=canvas.width, H=canvas.height;
+    const step=60;
+    ctx.strokeStyle=ACCENT; ctx.lineWidth=0.25; ctx.globalAlpha=0.10;
+    for(let x=0;x<W;x+=step){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+    for(let y=0;y<H;y+=step){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+  }
+
+  /* ══════════════════════════════════════════
+     2. ORBITE ELLIPTIQUE — trajectoire Ariane
+  ══════════════════════════════════════════ */
+  function drawOrbit(){
+    const W=canvas.width, H=canvas.height;
+    const cx=W*0.52, cy=H*0.50;
+    const rx=W*0.28, ry=H*0.20;
+
+    /* Orbite principale */
+    ctx.globalAlpha=0.18; ctx.strokeStyle=ACCENT; ctx.lineWidth=0.8;
+    ctx.setLineDash([6,8]);
+    ctx.beginPath(); ctx.ellipse(cx,cy,rx,ry,0,0,Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    /* Orbite secondaire inclinée */
+    ctx.globalAlpha=0.09; ctx.lineWidth=0.6;
+    ctx.setLineDash([4,10]);
+    ctx.beginPath(); ctx.ellipse(cx,cy,rx*1.35,ry*1.35,Math.PI*0.25,0,Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    /* Foyer (Terre) */
+    const focusX = cx + Math.sqrt(rx*rx - ry*ry)*0.85;
+    const focusY = cy;
+
+    /* Halo Terre */
+    const grad = ctx.createRadialGradient(focusX,focusY,0,focusX,focusY,22);
+    grad.addColorStop(0,'rgba(79,163,209,0.22)');
+    grad.addColorStop(1,'rgba(79,163,209,0)');
+    ctx.globalAlpha=1; ctx.fillStyle=grad;
+    ctx.beginPath(); ctx.arc(focusX,focusY,22,0,Math.PI*2); ctx.fill();
+    /* Point Terre */
+    ctx.globalAlpha=0.55; ctx.fillStyle=ACCENT;
+    ctx.beginPath(); ctx.arc(focusX,focusY,4,0,Math.PI*2); ctx.fill();
+    ctx.globalAlpha=0.18; ctx.strokeStyle=ACCENT; ctx.lineWidth=0.8;
+    ctx.beginPath(); ctx.arc(focusX,focusY,10,0,Math.PI*2); ctx.stroke();
+
+    /* ── Satellite animé sur l'orbite ── */
+    const angle = t * 0.38;
+    const satX  = cx + rx * Math.cos(angle);
+    const satY  = cy + ry * Math.sin(angle);
+
+    /* Trainée */
+    const trailLen = 38;
+    for(let k=0;k<trailLen;k++){
+      const a2 = angle - k*0.028;
+      const tx2 = cx + rx*Math.cos(a2);
+      const ty2 = cy + ry*Math.sin(a2);
+      ctx.globalAlpha = (1-k/trailLen)*0.25;
+      ctx.fillStyle   = ACCENT;
+      ctx.beginPath();
+      ctx.arc(tx2,ty2,1.6*(1-k/trailLen),0,Math.PI*2);
+      ctx.fill();
+    }
+
+    /* Corps satellite */
+    ctx.globalAlpha=0.90; ctx.fillStyle=ACCENT;
+    ctx.beginPath(); ctx.arc(satX,satY,4.5,0,Math.PI*2); ctx.fill();
+    /* Panneaux solaires */
+    ctx.globalAlpha=0.50; ctx.strokeStyle=ACCENT; ctx.lineWidth=1.2;
+    ctx.beginPath(); ctx.moveTo(satX-12,satY); ctx.lineTo(satX+12,satY); ctx.stroke();
+    ctx.globalAlpha=0.35; ctx.lineWidth=0.7;
+    [-10,-5,0,5,10].forEach(dx=>{
+      ctx.beginPath(); ctx.moveTo(satX+dx,satY-3); ctx.lineTo(satX+dx,satY+3); ctx.stroke();
+    });
+
+    /* Ligne de visée Terre → Satellite */
+    ctx.globalAlpha=0.10; ctx.strokeStyle=ACCENT; ctx.lineWidth=0.6;
+    ctx.setLineDash([3,6]);
+    ctx.beginPath(); ctx.moveTo(focusX,focusY); ctx.lineTo(satX,satY); ctx.stroke();
+    ctx.setLineDash([]);
+
+    return {cx,cy,rx,ry,focusX,focusY};
+  }
+
+  /* ══════════════════════════════════════════
+     3. LANCEUR — silhouette Ariane 6 stylisée
+  ══════════════════════════════════════════ */
+  function drawLauncher(){
+    const W=canvas.width, H=canvas.height;
+    const bx=W*0.12, by=H*0.88;
+    const s=0.55; /* échelle */
+
+    ctx.globalAlpha=0.13; ctx.strokeStyle=ACCENT; ctx.lineWidth=1;
+    ctx.fillStyle='rgba(79,163,209,0.06)';
+
+    /* Corps principal */
+    ctx.beginPath();
+    ctx.moveTo(bx,        by);
+    ctx.lineTo(bx,        by - 200*s);
+    ctx.lineTo(bx - 6*s,  by - 220*s);
+    ctx.lineTo(bx,        by - 260*s);  /* ogive */
+    ctx.lineTo(bx + 6*s,  by - 220*s);
+    ctx.lineTo(bx,        by - 200*s);
+    ctx.moveTo(bx,        by);
+    ctx.closePath();
+    /* Corps */
+    ctx.beginPath();
+    ctx.rect(bx - 10*s, by - 200*s, 20*s, 200*s);
+    ctx.fill(); ctx.stroke();
+    /* Ogive */
+    ctx.beginPath();
+    ctx.moveTo(bx - 10*s, by - 200*s);
+    ctx.lineTo(bx,        by - 260*s);
+    ctx.lineTo(bx + 10*s, by - 200*s);
+    ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    /* Tuyère */
+    ctx.beginPath();
+    ctx.moveTo(bx - 10*s, by);
+    ctx.lineTo(bx - 16*s, by + 16*s);
+    ctx.lineTo(bx + 16*s, by + 16*s);
+    ctx.lineTo(bx + 10*s, by);
+    ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    /* Boosters */
+    [-26*s, 26*s].forEach(dx=>{
+      ctx.beginPath();
+      ctx.rect(bx+dx-5*s, by-120*s, 10*s, 120*s);
+      ctx.fill(); ctx.stroke();
+      /* Tuyère booster */
+      ctx.beginPath();
+      ctx.moveTo(bx+dx-5*s,  by);
+      ctx.lineTo(bx+dx-9*s,  by+12*s);
+      ctx.lineTo(bx+dx+9*s,  by+12*s);
+      ctx.lineTo(bx+dx+5*s,  by);
+      ctx.closePath();
+      ctx.fill(); ctx.stroke();
+    });
+
+    /* Panache de flamme animé */
+    const flameH = 30 + 12*Math.sin(t*8);
+    const flameGrad = ctx.createLinearGradient(bx, by+16*s, bx, by+16*s+flameH);
+    flameGrad.addColorStop(0,'rgba(79,163,209,0.35)');
+    flameGrad.addColorStop(1,'rgba(79,163,209,0)');
+    ctx.globalAlpha=0.30+0.15*Math.sin(t*9);
+    ctx.fillStyle=flameGrad;
+    ctx.beginPath();
+    ctx.ellipse(bx, by+16*s+flameH*0.5, 14*s, flameH*0.5, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    /* Trajectoire de décollage */
+    ctx.globalAlpha=0.10; ctx.strokeStyle=ACCENT; ctx.lineWidth=0.8;
+    ctx.setLineDash([4,8]);
+    ctx.beginPath();
+    ctx.moveTo(bx, by-260*s);
+    ctx.bezierCurveTo(bx+80, by-400*s, bx+200, by-320*s, canvas.width*0.52, canvas.height*0.50);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+
+  /* ══════════════════════════════════════════
+     5. ÉTOILES DE FOND
+  ══════════════════════════════════════════ */
+  const STARS = Array.from({length:120},()=>({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random()*1.2+0.3,
+    a: Math.random()*0.4+0.1,
+  }));
+  function drawStars(){
+    STARS.forEach(s=>{
+      ctx.globalAlpha=s.a*(0.7+0.3*Math.sin(t*0.8+s.x*10));
+      ctx.fillStyle=ACCENT;
+      ctx.beginPath();
+      ctx.arc(s.x*canvas.width, s.y*canvas.height, s.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+  }
+
+  /* ══════════════════════════════════════════
+     6. HORIZON TERRESTRE
+  ══════════════════════════════════════════ */
+  function drawHorizon(){
+    const W=canvas.width, H=canvas.height;
+    const grad=ctx.createLinearGradient(0,H*0.82,0,H);
+    grad.addColorStop(0,'rgba(79,163,209,0.06)');
+    grad.addColorStop(1,'rgba(79,163,209,0.00)');
+    ctx.globalAlpha=1;
+    ctx.fillStyle=grad;
+    ctx.beginPath();
+    ctx.ellipse(W*0.5, H*1.35, W*0.75, H*0.65, 0, Math.PI, Math.PI*2);
+    ctx.fill();
+    /* Arc atmosphère */
+    ctx.globalAlpha=0.10; ctx.strokeStyle=ACCENT; ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.ellipse(W*0.5, H*1.35, W*0.75, H*0.65, 0, Math.PI*1.08, Math.PI*1.92);
+    ctx.stroke();
+  }
+
+  /* ══════════════════════════════════════════
+     BOUCLE PRINCIPALE
+  ══════════════════════════════════════════ */
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawStars();
+    drawHorizon();
+    drawGrid();
+    drawOrbit();
+    drawLauncher();
+    t += 0.012;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+  <div class="hero-content fi on">
+    <h1 class="hero-name">Paul-Emile<br><span class="hl">Le Coz</span></h1>
+    <p class="hero-sub">Ingénieur d'étude et d'affaires — Projets &amp; Ouvrages Spéciaux</p>
+    <p class="hero-tag">Concevoir, dimensionner et industrialiser des systèmes mécaniques complexes pour des projets d'envergures.</p>
+    <div class="hero-cta">
+      <a href="CV_PaulEmile_LeCoz.pdf" class="btn" download>Télécharger le CV</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Défiler</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- PROFIL -->
+<section id="apropos" class="section-wrap">
+  <div class="inner">
+    <div class="s-label fi">Profil</div>
+    <h2 class="s-title fi">Parcours &amp; Vision</h2>
+    <div class="about-grid fi">
+      <div class="about-photo">
+        <img src="profil.png" alt="Paul-Emile Le Coz">
+      </div>
+      <div class="about-body">
+        <p>Ingénieur en génie mécanique &amp; matériaux, diplômé de <strong>SeaTech — École d'Ingénieurs du Groupe INP de Toulon</strong>, je trouve ma motivation dans des projets concrets et ambitieux, où technique, rigueur et travail d'équipe se rejoignent.</p>
+        <p>Aujourd'hui <strong>Ingénieur d'étude et d'affaires chez Eiffage Energie Systèmes</strong>, je pilote des projets de grande envergure — conception, gestion de sous-traitance, relation client — dans un environnement où la précision et la fiabilité sont primordiales.</p>
+        <div class="tags-label">Domaines clés</div>
+        <div class="tags">
+          <span class="tag">Conception mécanique</span>
+          <span class="tag">Ouvrages spéciaux</span>
+          <span class="tag">Gestion de projet &amp; d'affaires</span>
+          <span class="tag">Science des matériaux</span>
+        </div>
+        <div class="profile-links">
+          <button class="profile-link-btn" onclick="openModal('modal-competences')">Compétences détaillées →</button>
+          <button class="profile-link-btn" onclick="openModal('modal-perso')">À propos de moi →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets" class="section-wrap">
+  <div class="inner">
+    <div class="s-label fi">Travaux professionnels &amp; académiques</div>
+    <h2 class="s-title fi">Portfolio</h2>
+    <div class="proj-list" id="proj-list"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-strip">
+  <div class="contact-inner fi">
+    <span class="ct-eyebrow">Me contacter</span>
+    <div class="ct-items">
+      <a href="mailto:paulemile.lecoz5@gmail.com">paulemile.lecoz5@gmail.com</a>
+      <span class="ct-sep">·</span>
+      <a href="tel:+33611041664">+33 6 11 04 16 64</a>
+      <span class="ct-sep">·</span>
+      <a href="https://linkedin.com/in/paul-emile-le-coz" target="_blank">linkedin.com/in/paul-emile-le-coz</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Paul-Emile Le Coz</footer>
+<button id="btt" aria-label="Retour en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- MODALE — COMPÉTENCES -->
+<div class="modal-overlay" id="modal-competences" aria-hidden="true">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closeModal('modal-competences')" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+    </button>
+    <div class="s-label">Compétences</div>
+    <h2 class="s-title">Domaines d'expertise</h2>
+    <p class="s-sub">Un aperçu des compétences mobilisées au fil de mes projets.</p>
+    <div class="comp-groups">
+      <div class="comp-group">
+        <h3>Conception &amp; ingénierie</h3>
+        <div class="tags">
+          <span class="tag">Conception mécanique</span>
+          <span class="tag">Prédimensionnement</span>
+          <span class="tag">Science des matériaux</span>
+          <span class="tag">Ouvrages spéciaux</span>
+        </div>
+      </div>
+      <div class="comp-group">
+        <h3>Gestion de projet &amp; d'affaires</h3>
+        <div class="tags">
+          <span class="tag">Pilotage de grand projet</span>
+          <span class="tag">Chiffrage &amp; appels d'offres</span>
+          <span class="tag">Gestion de sous-traitance</span>
+          <span class="tag">Relation client</span>
+        </div>
+      </div>
+      <div class="comp-group">
+        <h3>Logiciels &amp; Outils</h3>
+        <div class="tags">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">Catia</span>
+          <span class="tag">Abaqus</span>
+          <span class="tag">Suite Office 365</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Power Apps / Automate</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+      <div class="comp-group">
+        <h3>Langues</h3>
+        <div class="tags">
+          <span class="tag">Français (Langue maternelle)</span>
+          <span class="tag">Anglais (Courant, TOEIC 875)</span>
+          <span class="tag">Espagnol (intermediaire, B1)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODALE — À PROPOS DE MOI -->
+<div class="modal-overlay" id="modal-perso" aria-hidden="true">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closeModal('modal-perso')" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+    </button>
+    <div class="s-label">Hors du travail</div>
+    <h2 class="s-title">À propos de moi</h2>
+    <p class="s-sub">Quelques mots sur ce qui m'anime en dehors du travail.</p>
+    <div class="perso-grid">
+      <div class="perso-card">
+        <div class="perso-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8v28"></path><path d="M24 10l12 16H24z"></path><path d="M10 36h28l-4 6H14l-4-6z"></path></svg></div>
+        <h3>Passion</h3>
+        <p>Passionné par la mer depuis toujours, c'est en partie ce qui m'a conduit vers l'ingénierie navale et offshore. En dehors du travail, je retrouve cette passion à travers le surf et la voile, des activités qui me permettent de me reconnecter à moi-même, de déconnecter complètement. Je pratique également régulièrement l'escalade, que ce soit en salle ou en falaise, pour le défi physique et mental que cela représente. Enfin, je m'intéresse beaucoup à la culture, notamment la musique et la lecture, qui sont pour moi des sources d'évasion et d'enrichissement.</p>
+      </div>
+      <div class="perso-card">
+        <div class="perso-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="16" r="5"></circle><circle cx="30" cy="16" r="5"></circle><path d="M8 38c0-7 6-11 10-11s10 4 10 11"></path><path d="M20 38c0-7 6-11 10-11s10 4 10 11"></path></svg></div>
+        <h3>Engagement associatif</h3>
+        <p>Mon engagement à la SNSM a débuté en terminale par une année de formation, au cours de laquelle j’ai obtenu six diplômes en sauvetage et secourisme. J’ai ensuite exercé comme sauveteur sur les plages tout en restant bénévole à l’année. Cette expérience m’a appris à travailler en équipe, à prendre des décisions en situation d’urgence, à assumer des responsabilités et à faire preuve de réactivité et d’autonomie. Au-delà des compétences acquises, elle reflète une véritable passion pour le secours en mer et l’engagement au service des autres.
+
+.</p>
+      </div>
+    </div>
+    <div class="perso-photos">
+      <div class="perso-photo"><img src="surf.jpg" alt="Surf" loading="lazy"></div>
+      <div class="perso-photo"><img src="escalade.jpg" alt="Escalade" loading="lazy"></div>
+      <div class="perso-photo"><img src="snsm.jpg" alt="Sauveteurs en mer (SNSM)" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── ICÔNES PROJETS ─── */
+const ICONS = {
+  crane: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="13" x2="42" y2="13"></line><rect x="19" y="13" width="10" height="6" rx="1.4"></rect><line x1="24" y1="19" x2="24" y2="29"></line><path d="M19 29a5 5 0 0 0 10 0"></path></svg>`,
+  reel: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="14"></circle><circle cx="24" cy="24" r="8"></circle><circle cx="24" cy="24" r="1.6" fill="currentColor" stroke="none"></circle><line x1="24" y1="10" x2="24" y2="5"></line></svg>`,
+  pin: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8c-6.6 0-12 5.2-12 11.6C12 28 24 40 24 40s12-12 12-20.4C36 13.2 30.6 8 24 8z"></path><circle cx="24" cy="19.4" r="4"></circle></svg>`,
+  ship: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 27h32l-4.5 8h-23L8 27z"></path><line x1="24" y1="27" x2="24" y2="10"></line><path d="M24 12l9 7h-9z"></path></svg>`,
+  leaf: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 34C10 22 18 10 34 10c2 16-8 26-20 24z"></path><path d="M14 34c4-8 10-14 18-20"></path></svg>`,
+  photo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8.5" cy="10.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>`
+};
+
+/* ─── DONNÉES PROJETS ─── */
+const projects = [
+  {
+    icon: ICONS.crane,
+    sector:"Eiffage Energie Système",
+    title:"Conception et fourniture de 70 monorails de levage pour deux sous-stations électriques offshore",
+    desc: "Dans le cadre de la réalisation de sous-stations électriques à courant continu de nouvelle génération, les Chantiers de l'Atlantique nous ont confié  la conception et la fourniture de 70 monorails, électriques et manuels, boulonnés ou soudés au plafond des salles techniques.",
+    /* ── Les 3 photos réelles, dans l'ordre demandé ── */
+    images: [
+      "2024-04-30-cp-rte-hitachi-une-hd.jpg",          // 1 — Hitachi / sous-station offshore
+      "MONORAILCAO.png"          // 2 — Vue SolidWorks       
+    ],
+    detail:`<h2>Contexte du projet</h2>
+    <p>Ces équipements sont destinés à l'installation et à la manutention des différents composants et outillages lors des phases d'aménagement. Ils sont amenés à manipuler des éléments particulièrement sensibles, d'une valeur considérable, dans un environnement offshore aux exigences techniques et qualité extrêmement élevées.</p>
+
+    <h2>Un défi technique majeur</h2>
+    <p>Certains monorails atteignent jusqu'à <strong>35 mètres de longueur</strong> et sont constitués de sept tronçons. Il a donc fallu concevoir un système permettant un assemblage simple et fiable des rails au plafond, tout en garantissant des tolérances de fabrication et de montage très strictes, notamment au niveau des jonctions.</p>
+    <p>L'objectif était d'obtenir un alignement parfait dès l'installation afin d'assurer le bon fonctionnement. La moindre erreur de conception ou de fabrication pouvant entraîner des conséquences techniques et économiques considérables.</p>
+    <ul>
+        <li>des exigences qualité extrêmement élevées propres au secteur offshore</li>
+        <li>une dimension de fabrication série avec plusieurs centaines de tronçons</li>
+        <li>un projet sur mesure</li>
+    </ul>
+
+    <h2>Mes responsabilités</h2>
+    En parallèle de mon poste d'ingéneur d'étude ou j'ai pu participé à la conception, réalisé la mise en plan des plan d'ensemble et plan de fabrication, et imaginé différentes solutions, j'ai rapidement récupéré le rôle de Chargé d'Affaires. Tout en continuant le pilotage technique, cette fonction élargie m'a amené à gérer l'ensemble des aspects du projet : des réunions hebdomadaires avec le client à la gestion des sous-traitants, en passant par la définition des procédures qualité et la coordination logistique.
+
+    <h2>Essais et validation</h2>
+    <p>J'ai également conçu une structure d'essai dédiée à la validation finale des monorails, puis dirigé les campagnes d'essais permettant de qualifier les solutions techniques retenues.</p>
+    <p>Cette mission m'a conduit à assurer le management transversal des équipes de mécaniciens et d'électriciens mobilisées pour la préparation, la réalisation et la validation des essais.</p>`,
+    gallery:["Vue d'ensemble du monorail","Détail d'assemblage / jonction","Essais FAT en atelier"],
+    tools:["Gestion de projet","SolidWorks","Sous-traitance","FAT / Essais","HVDC Offshore","Planning & budget"],
+    link:"PAULEMILE_RAPPORT_STAGE_3A_EIFFAGE.pdf",
+    linkLabel:"Voir le rapport"
+  },
+  {
+    icon: ICONS.reel,
+    sector:"Eiffage Energie Système",
+    title:"Enrouleur pour station éléctrique offshore",
+    desc:"Pour répondre à un appel d'offres des Chantiers de l'Atlantique, j'ai conçu un système permettant de descendre, remonter, et alimenter électriquement une pompe et son tuyau. Cette solution mobile était destinée à des sous-stations électriques offshore, avec pour enjeu principal de développer un équipement compact, sécurisé et capable de fonctionner dans un environnement marin très contraignant.",
+    /* ── Les photos réelles du projet ── */
+    /* Image principale affichée en entier (non recadrée), fond raccordé à la couleur de la page */
+    mainFitContain: true,
+    images: [
+      "enrouleur-3d.jpg",       // 1 — Modélisation SolidWorks 3D de l'enrouleur (affichée intégralement)
+      "enrouleur-schema.jpg"    // 2 — Schéma technique annoté (poulies, bras pivot, entraînement...)
+    ],
+    detail:`<p>Au sein de ce projet, ma mission couvrait plusieurs étapes clés, de l'étude technique à la proposition commerciale. Mes responsabilités principales étaient les suivantes :
+<ul>
+    <li><strong>Analyse et Conception :</strong> Analyse de cahier des charges technique, conception de solutions mécaniques sur mesure et modélisation 3D sous SolidWorks (structure, cinématique, intégration).</li>
+    <li><strong>Dimensionnement et Calcul :</strong> Dimensionnement de systèmes de levage et de transmission (roue et vis sans fin), validation de la sécurité et de l'irréversibilité des mécanismes.</li>
+    <li><strong>Chiffrage et Achat :</strong> Consultation de fournisseurs, analyse de devis techniques et participation active au chiffrage d'une solution complète pour garantir la viabilité économique.</li>
+    <li><strong>Réponse à Appel d'Offres :</strong> Contribution à la rédaction d'une offre commerciale, incluant la définition du périmètre technique (Scope of Work) et la description de la solution pour le client.</li>
+    <li><strong>Gestion de Projet Technique :</strong> Suivi d'un projet depuis l'étude de faisabilité jusqu'à la proposition commerciale, en assurant la cohérence entre les exigences techniques, les coûts et les délais.</li>
+</ul>`,
+    gallery:["Modélisation SolidWorks","Mécanisme d'entraînement","Intégration en espace réduit"],
+    tools:["SolidWorks","Dimensionnement mécanique","Cahier des charges","Devis & chiffrage","Appel d'offres"],
+    link:"PAULEMILE_RAPPORT_STAGE_3A_EIFFAGE.pdf",
+    linkLabel:"Voir le rapport"
+  },
+  {
+    icon: ICONS.pin,
+    sector:"Eiffage Energie Système - Contrat Airbus Atlantique",
+    title:"Géolocalisation d'équipements sur un site industriel de 88 hectares",
+    desc:"Développement d'un maillage numérique pour le site Airbus à partir de plans 2D, fiabilisant la localisation des équipements et optimisant la performance opérationnelle grâce à des cartes interactives et des rapports Power BI.",
+    /* ── Les photos réelles du projet ── */
+    images: [
+      "airbus-maillage.jpg",       // 1 — Maillage numérique projeté sur la vue satellite (carte Folium)
+      "airbus-code.jpg",           // 2 — Script Python : transformation affine & génération de la carte
+      "airbus-localisation.jpg"    // 3 — Tableau de bord de localisation des avis / équipements
+    ],
+    detail:`<h3>Développement d'un Outil de Géolocalisation par Maillage Numérique</h3><p>Pour optimiser la gestion des équipements sur un site industriel complexe de 88 hectares (Airbus Nantes), j'ai mené un projet alliant développement informatique, modélisation mathématique et analyse de données. L'objectif était de transformer un plan de maillage non standard en un outil de géolocalisation numérique interactif et précis.</p><ul><li><strong>Algorithmique et Développement Python :</strong> J'ai développé un script en Python pour générer numériquement un maillage complexe à pas variable. En utilisant la bibliothèque <strong>Numpy</strong>, le programme construit une grille virtuelle de plusieurs milliers de points représentant l'ensemble du site, en respectant les espacements spécifiques du plan d'origine.</li><li><strong>Modélisation Mathématique et Géospatiale :</strong> Le cœur du projet a consisté à appliquer des modèles mathématiques pour projeter la grille virtuelle sur le monde réel. J'ai implémenté une <strong>transformation affine</strong> pour convertir les coordonnées de chaque point du maillage en coordonnées GPS (latitude, longitude) précises. Ce calcul, basé sur des points de référence, a permis de créer un véritable jumeau numérique du site.</li><li><strong>Développement d'Applications et Intégration de Données :</strong> Pour rendre ces données exploitables, j'ai développé plusieurs applications :<ul><li style="margin-top:8px;">Une <strong>carte HTML interactive</strong> (avec la bibliothèque <strong>Folium</strong>) permettant de visualiser le maillage superposé à une vue satellite du site.</li><li style="margin-top:8px;">Un export des données vers Excel, qui sert de base de données pour alimenter des tableaux de bord <strong>Power BI</strong> et analyser spatialement les opérations de maintenance.</li><li style="margin-top:8px;">Une application <strong>Power Apps</strong> pour les techniciens sur le terrain, leur permettant de localiser et de corriger en temps réel la position des équipements grâce à un algorithme (basé sur la <strong>formule de Haversine</strong>) qui identifie les 5 points de maillage les plus proches.</li></ul></li></ul>`,
+    gallery:["Maillage numérique du site","Tableau de bord Power BI","Application de terrain"],
+    tools:["Python","Power BI","Power Apps","Power Automate","DAX","Géolocalisation GPS"],
+    link:"PAULEMILE_RAPPORT_STAGE_3A_EIFFAGE.pdf",
+    linkLabel:"Voir le rapport"
+  },
+  {
+    icon: ICONS.ship,
+    sector:"Projet 3ème année - Vinci Cegelec",
+    title:"Étude de la corrosion par piqûres des navires en aluminium de la Marine Nationale.",
+    desc:"J'ai étudié la corrosion qui attaque les coques en aluminium des navires de la Marine nationale, pour proposer une stratégie fiable de remise en état.",
+    /* ── Les photos réelles du projet ── */
+    images: [
+      "edar.jpg",              // 1 — Navire EDA-R de la Marine nationale
+      "cegelec-corrosion.jpg", // 2 — Piqûres de corrosion observées au MEB
+      "cegelec-eds.jpg",       // 3 — Spectre EDS de l'alliage d'aluminium 5383
+      "cegelec-oxygene.jpg"    // 4 — Cartographie EDS de l'oxygène (O Kα1) sur une piqûre
+    ],
+    detail:`<p>Dans le cadre du programme de remise en état des navires EDA-R de la Marine nationale, mené sur la base navale de Toulon en partenariat avec Cegelec, j'ai conduit une analyse approfondie des mécanismes de corrosion par piqûre touchant les structures en aluminium 5383.</p>
+    <ul>
+      <li>Analyses microstructurales par microscopie électronique à balayage couplée à la spectroscopie EDS</li>
+      <li>Évaluation de traitements cryogéniques destinés à améliorer la résistance du matériau</li>
+    </ul>
+    <p>Cette étude a abouti à l'élaboration d'une stratégie complète de remise en état des structures affectées, validée par la Marine nationale.</p>`,
+    gallery:["Analyse MEB / EDS","Piqûres de corrosion","Structure en aluminium 5383"],
+    tools:["MEB/EDS","Traitements cryogéniques","Analyse microstructurale","Science des matériaux"],
+    link:"Projet_Cegelec.pdf",
+    linkLabel:"Voir le rapport"
+  },
+  {
+    icon: ICONS.leaf,
+    sector:"Univarsidad de Buenos-Aires - Laboratoire GAMBI",
+    title:"Développement de films biodégradables pour l'emballage alimentaire",
+    desc:"Développement et caractérisation de films bioplastiques à base d'amidon de manioc et de chitosane. L'étude a évalué l'influence de l'ajout de poudre de coquille d'œuf comme renfort naturel pour créer une alternative durable aux emballages plastiques.",
+    /* ── Les photos réelles du projet (fond blanc adapté à la couleur de la page) ── */
+    images: [
+      "buenosaires-instron.png",
+      "buenosaires-flowchart.png"
+    ],
+    detail:`<h3>Développement et Caractérisation de Films Biodégradables à base d'Amidon et Chitosane</h3><p>Ce projet de recherche, mené au sein du laboratoire GAMBI à l'Université de Buenos Aires, visait à développer une solution d'emballage écologique en créant des films bioplastiques. L'étude s'est concentrée sur l'utilisation de polymères naturels et de sous-produits agro-industriels pour remplacer les plastiques dérivés du pétrole.</p><ul><li><strong>Formulation et Optimisation de Films Polymères :</strong> Le projet a débuté par le développement de films à partir d'un mélange d'<strong>amidon de manioc</strong> et de <strong>chitosane</strong>. Différentes formulations ont été préparées et testées pour trouver le ratio optimal.</li><li><strong>Caractérisation Avancée des Matériaux :</strong> Pour valider la performance des films, une caractérisation complète a été menée :<ul><li style="margin-top:8px;"><strong>Tests mécaniques</strong> pour évaluer la résistance à la traction et la flexibilité (Module de Young).</li><li style="margin-top:8px;"><strong>Analyse de la résistance à l'humidité</strong> via des tests de gonflement et de perméabilité à la vapeur d'eau, un facteur critique pour la conservation des aliments.</li><li style="margin-top:8px;">Observations par <strong>microscopie électronique à balayage (MEB)</strong> pour analyser la morphologie de la surface et l'homogénéité des films.</li></ul></li><li><strong>Étude d'un Renfort Naturel :</strong> La seconde phase du projet a consisté à incorporer de la <strong>poudre de coquille d'œuf</strong> dans la matrice polymère pour tenter d'en améliorer les propriétés barrière et mécaniques. Cependant, les résultats ont montré que cet ajout rendait les films plus fragiles et réduisait leur résistance à l'eau, probablement à cause d'une concentration trop élevée et d'une intégration non optimale des particules.</li></ul><p>En conclusion, le projet a non seulement validé le potentiel des films à base d'amidon/chitosane pour des applications d'emballage, mais a également ouvert des pistes de recherche pour optimiser l'utilisation de renforts naturels, notamment en ajustant leur concentration et la taille des particules.</p>`,
+    gallery:["Film biodégradable","Essais de traction","Observation MEB"],
+    tools:["Caractérisation matériaux","Essais mécaniques","MEB","Formulation polymères","R&D"],
+    link:"Internship_report_LeCoz_PaulEmile_2AMDE.pdf",
+    linkLabel:"Voir le rapport"
+  }
+];
+
+const pl = document.getElementById('proj-list');
+projects.forEach((p,i)=>{
+  const tools = p.tools.map(t=>`<span class="proj-tool">${t}</span>`).join('');
+  const detailId = `detail-${i}`;
+  const extraId  = `extra-${i}`;
+
+  /* ── Colonne photos : images réelles fixes OU comportement standard ── */
+  let photosHTML = '';
+  if(p.images && p.images.length >= 2){
+  /* Image 1 : toujours visible, format standard (ou "contain" si demandé, ex: enrouleur) */
+  const mainImgClass = p.mainFitContain ? ' img-contain' : '';
+  const mainImg = `<div class="proj-img${mainImgClass}"><img src="${p.images[0]}" alt="" loading="lazy"></div>`;
+
+  /* Images suivantes : cachées, révélées uniquement au clic sur "Détails" */
+  const extraPhotos = p.images.slice(1).map(src =>
+    `<div class="proj-extra-img"><img src="${src}" alt="" loading="lazy"></div>`
+  ).join('');
+
+  photosHTML = `
+    ${mainImg}
+    <div class="proj-extra" id="${extraId}">
+      <div class="proj-extra-inner">${extraPhotos}</div>
+    </div>`;
+} else {
+    /* Autres projets : image principale + galerie cachée standard */
+    const extraPhotos = p.gallery.slice(0,2).map(cap =>
+      `<div class="proj-extra-img">${ICONS.photo}<span>${cap}</span></div>`
+    ).join('');
+    photosHTML = `
+      <a href="${p.link}" target="_blank" class="proj-img-link"><div class="proj-img">${p.icon}</div></a>
+      <div class="proj-extra" id="${extraId}">
+        <div class="proj-extra-inner">${extraPhotos}</div>
+      </div>`;
+  }
+
+  const multiClass = (p.images && p.images.length >= 2) ? ' multi-img' : '';
+
+  const row = document.createElement('div');
+  row.className = 'proj-row fi' + (i%2===1 ? ' flip' : '');
+  row.innerHTML = `
+    <div class="proj-photos${multiClass}">
+      ${photosHTML}
+    </div>
+    <div class="proj-text">
+      <div class="proj-sector">${p.sector}</div>
+      <a href="${p.link}" target="_blank" class="proj-title-link"><div class="proj-title">${p.title}</div></a>
+      <div class="proj-desc">${p.desc}</div>
+      <div class="proj-tools">${tools}</div>
+      <div class="proj-actions">
+        <a href="${p.link}" target="_blank" class="proj-link">${p.linkLabel} →</a>
+        <button class="detail-toggle" onclick="toggleDetail(this,'${detailId}','${extraId}')">
+          <span class="label">Détails</span><span class="chevron"></span>
+        </button>
+      </div>
+      <div class="proj-detail-wrap" id="${detailId}">
+        <div class="proj-detail-inner">
+          <div class="proj-detail">${p.detail}</div>
+        </div>
+      </div>
+    </div>`;
+  pl.appendChild(row);
+});
+
+function toggleDetail(btn, id, extraId){
+  const wrap  = document.getElementById(id);
+  const extra = document.getElementById(extraId);
+  const open  = wrap.classList.toggle('open');
+  if(extra) extra.classList.toggle('open', open);
+  btn.classList.toggle('open', open);
+  btn.querySelector('.label').textContent = open ? 'Réduire' : 'Détails';
+}
+
+/* ─── MODALES ─── */
+function openModal(id){
+  const m = document.getElementById(id);
+  m.classList.add('open');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id){
+  const m = document.getElementById(id);
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click', e=>{ if(e.target===m) closeModal(m.id); });
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.open').forEach(m=>closeModal(m.id)); }
+});
+
+/* ─── REVEAL AU SCROLL ─── */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('on'); });
+},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+/* ─── SCROLL : progress, back-to-top, nav active ─── */
+window.addEventListener('scroll',()=>{
+  const st = document.documentElement.scrollTop;
+  const dh = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('prog').style.width = (dh>0 ? (st/dh*100) : 0) + '%';
+  document.getElementById('btt').classList.toggle('on', st>350);
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s=>{ if(st>=s.offsetTop-90) cur=s.id; });
+  document.querySelectorAll('.nav-links a[href]').forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('href')==='#'+cur);
+  });
+});
+
+/* ─── MENU MOBILE ─── */
+document.getElementById('hbg').addEventListener('click', ()=>document.getElementById('mob').classList.toggle('open'));
+function cm(){ document.getElementById('mob').classList.remove('open'); }
+</script>
+
+</body>
+</html>
